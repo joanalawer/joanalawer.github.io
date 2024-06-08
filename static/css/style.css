@@ -390,6 +390,16 @@ section h3.section-subheading {
     color: var(--second-bg-color);
 }
 
+/* Vollunteer Gallery design */
+.volunteer .card {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    border: .1rem solid var(--main-color);
+    background: transparent;
+}
+
+
+
 /* Portfolio design */
 .portfolio {
     background: var(--bg-color);
