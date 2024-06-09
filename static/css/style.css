@@ -394,10 +394,9 @@ section h3.section-subheading {
 .volunteer .card {
     margin-top: 50px;
     margin-bottom: 20px;
-    border: .1rem solid var(--main-color);
+    border: .1rem;
     background: transparent;
 }
-
 
 
 /* Portfolio design */
