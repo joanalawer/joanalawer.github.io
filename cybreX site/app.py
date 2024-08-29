@@ -8,8 +8,8 @@ with open('model/spam_classifier.pkl', 'rb') as model_file:
     clf, cv = pickle.load(model_file)
 
 @app.route('/')
-def home():
-    return render_template('home.html')
+def index():
+    return render_template('index.html')
 
 @app.route('/predict', methods=['POST'])
 def predict():
