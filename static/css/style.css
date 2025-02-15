@@ -420,6 +420,10 @@ section h3.section-subheading {
     font-family: 'Droid Serif', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+#data-portfolio-container {
+    margin-bottom: 7%;
+}
+
 /* Volunteer Gallery design */
 .volunteer .card {
     margin-top: 50px;
