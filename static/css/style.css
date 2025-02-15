@@ -390,7 +390,36 @@ section h3.section-subheading {
     color: var(--second-bg-color);
 }
 
-/* Vollunteer Gallery design */
+/* Data Portfolio Design */
+.data-portfolio-heading {
+    display:inline;
+    font-size: 35px;
+    color: #112e48;
+}
+
+hr {
+    width: 100px;
+    height: 1px;
+    border:none;
+    color:var(--text-color);
+    background-color: var(--text-color);
+}
+
+center .section-subheading .text-muted {
+    max-width: 500px;
+    line-height: 27px;
+}
+
+section h3.section-subheading {
+    font-size: 20px;
+    font-weight: 400;
+    font-style: italic;
+    margin-bottom: 45px;
+    text-transform: none;
+    font-family: 'Droid Serif', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* Volunteer Gallery design */
 .volunteer .card {
     margin-top: 50px;
     margin-bottom: 20px;
