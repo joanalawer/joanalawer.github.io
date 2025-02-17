@@ -421,7 +421,16 @@ section h3.section-subheading {
 }
 
 #data-portfolio-container {
-    margin-bottom: 7%;
+    margin-bottom: 5%;
+}
+
+.data-portfolio-links {
+    margin-top: 2%;
+}
+
+.data-link {
+    font-size: 1.8rem;
+    color: #143a5c;
 }
 
 /* Volunteer Gallery design */
