@@ -350,23 +350,25 @@
             </div>
             <!-- CONTACT FORM  -->
             <div class="col-lg-6 text-center">
-              <form action="#">
+              <form id="contactForm">
                 <div class="form-input">
                   <div class="input-field">
-                    <input type="text" placeholder="Full Name" required>
+                    <input type="text" id="fullName" placeholder="Full Name" required>
                   </div>
                   <div class="input-field">
-                    <input type="text" placeholder="Email Address" required>
+                    <input type="text" id="email" placeholder="Email Address" required>
                   </div>
                 </div>
                 <div class="textarea-field">
-                  <textarea name="" id="" cols="30" rows="10" placeholder="Your Message" required></textarea>
+                  <textarea name="" id="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
                 </div>
                 <div class="btn-box btns">
                   <button class="btn" type="submit">Submit</button>
                 </div>
+                <div id="statusMessage" style="margin-top: 10px;"></div>
               </form>
             </div>
+            
           </div>
         </div>
       </section>
