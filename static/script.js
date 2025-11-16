@@ -72,3 +72,58 @@ window.onscroll = () => {
   menuIcon.classList.remove('bx-x');
   navbar.classList.remove('active')
 }
+
+//*************************CONTACT FORM ***************************** //
+document.addEventListener('DOMContentLoaded', function() {
+  const contactForm = document.querySelector('.contact form');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const submitBtn = contactForm.querySelector('button[type"submit"]');
+      const statusMessage = document.getElementById('statusMessage');
+
+      // Disable button and show loading
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+      if (statusMessage) statusMessage.textContent = '';
+
+      const formData = {
+        fullName: contactForm.querySelector('input[placeholder="Full Name"]').value,
+        email: contactForm.querySelector('input[placeholder="Email"]').value,
+        message: contactForm.querySelector('input[placeholder="Your Massage"]').value
+      };
+      try {
+        const response = await fetch('http://localhost:3000/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData)
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          if (statusMessage) {
+            statusMessage.style.color = 'var(--main-color)';
+            statusMessage.textContent = 'Thank you! Your message has been sent successfully.';
+          }
+          contactForm.requestFullscreen();
+        } else {
+          throw new Error(data.error || 'Something went wrong');
+        }
+      } catch (error) {
+        if (statusMessage) {
+          statusMessage.style.color = '#ff4444';
+          statusMessage.textContent = 'Error: ' + error.message;
+        }
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit';
+      }
+    });
+  }
+});
+//*************************CONTACT FORM ENDS ***************************** //
