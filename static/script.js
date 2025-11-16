@@ -74,16 +74,23 @@ window.onscroll = () => {
 }
 
 //*************************CONTACT FORM ***************************** //
-document.addEventListener('DOMContentLoaded', function() {
-  const contactForm = document.querySelector('.contact form');
+// document.addEventListener('DOMContentLoaded', function() {
+//   const contactForm = document.querySelector('.contact form');
 
-  if (contactForm) {
-    contactForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
+//   if (contactForm) {
+//     contactForm.addEventListener('submit', async (e) => {
+//       e.preventDefault();
 
-      const submitBtn = contactForm.querySelector('button[type"submit"]');
-      const statusMessage = document.getElementById('statusMessage');
+//       const submitBtn = contactForm.querySelector('button[type"submit"]');
+//       const statusMessage = document.getElementById('statusMessage');
 
+
+document.getElementById('contactForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  
+  const submitBtn = e.target.querySelector('button[type="submit"]');
+  const statusMessage = document.getElementById('statusMessage');
+  
       // Disable button and show loading
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending...';
@@ -107,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (response.ok) {
           if (statusMessage) {
-            statusMessage.style.color = 'var(--main-color)';
+            statusMessage.style.color = 'green';
             statusMessage.textContent = 'Thank you! Your message has been sent successfully.';
           }
           contactForm.requestFullscreen();
@@ -116,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       } catch (error) {
         if (statusMessage) {
-          statusMessage.style.color = '#ff4444';
+          statusMessage.style.color = 'red';
           statusMessage.textContent = 'Error: ' + error.message;
         }
       } finally {
@@ -124,6 +131,6 @@ document.addEventListener('DOMContentLoaded', function() {
         submitBtn.textContent = 'Submit';
       }
     });
-  }
-});
+//   }
+// });
 //*************************CONTACT FORM ENDS ***************************** //
