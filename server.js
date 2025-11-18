@@ -11,9 +11,26 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 app.use(cors());
 
-// Server satatic files from your project
-app.unsubscribe('/static', express.static(path.join(__dirname, 'static')));
+// Server static files from your project
+app.use('/static', express.static(path.join(__dirname, 'static')));
 
+// Serve HTML files
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+  });
+  
+  app.get('/volunteer.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'volunteer.html'));
+  });
+  
+  app.get('/analysis.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'analysis.html'));
+  });
+  
+  app.get('/pending.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'pending.html'));
+  });
+  
 // PostgreSQL connection
 const pool = new Pool({
     user: process.env.DB_USER,
@@ -25,7 +42,7 @@ const pool = new Pool({
 
 // Email transporter setup
 const transporter = nodemailer.createTransport({
-    service: 'gamil', // or 'smtp.gmail.com'
+    service: 'gmail', // or 'smtp.gmail.com'
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASSWORD // Use App Password for Gmail
