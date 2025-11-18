@@ -74,22 +74,21 @@ window.onscroll = () => {
 }
 
 //*************************CONTACT FORM ***************************** //
-// document.addEventListener('DOMContentLoaded', function() {
-//   const contactForm = document.querySelector('.contact form');
-
-//   if (contactForm) {
-//     contactForm.addEventListener('submit', async (e) => {
-//       e.preventDefault();
-
-//       const submitBtn = contactForm.querySelector('button[type"submit"]');
-//       const statusMessage = document.getElementById('statusMessage');
-
-
-document.getElementById('contactForm').addEventListener('submit', async (e) => {
-  e.preventDefault();
+// document.getElementById('contactForm').addEventListener('submit', async (e) => {
+//   e.preventDefault();
   
-  const submitBtn = e.target.querySelector('button[type="submit"]');
-  const statusMessage = document.getElementById('statusMessage');
+//   const submitBtn = e.target.querySelector('button[type="submit"]');
+//   const statusMessage = document.getElementById('statusMessage');
+
+document.addEventListener('DOMContentLoaded', function() {
+  const contactForm = document.querySelector('.contact form');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const statusMessage = document.getElementById('statusMessage');
   
       // Disable button and show loading
       submitBtn.disabled = true;
@@ -102,7 +101,7 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
         message: contactForm.querySelector('input[placeholder="Your Massage"]').value
       };
       try {
-        const response = await fetch('http://localhost:3000/api/contact', {
+        const response = await fetch('/api/contact', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -131,6 +130,6 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
         submitBtn.textContent = 'Submit';
       }
     });
-//   }
-// });
+  }
+});
 //*************************CONTACT FORM ENDS ***************************** //
