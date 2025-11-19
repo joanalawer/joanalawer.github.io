@@ -85,7 +85,7 @@ app.post('/api/contact', async (req, res) => {
         // Send email notification
         const mailOptions = {
             from: process.env.EMAIL_USER,
-            to: process.env.RECEIPT_EMAIL,
+            to: process.env.RECIPIENT_EMAIL,
             subject: `New Contact Form Submission from ${fullName}`,
             html: `
             <h3>New Contact Form Submission</h3>
