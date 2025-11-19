@@ -53,9 +53,9 @@ const transporter = nodemailer.createTransport({
 const createTableQuery = `
     CREATE TABLE IF NOT EXISTS contact_submissions (
         id SERIAL PRIMARY KEY,
-        fullname VARCHAR(255) NOT NULL,
+        fullName VARCHAR(255) NOT NULL,
         email VARCHAR(255) NOT NULL,
-        mesaage TEXT NOT NULL,
+        message TEXT NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
 `;
@@ -64,6 +64,8 @@ pool.query(createTableQuery).catch(err => console.error('Table creation error:',
 
 // Handle form submission
 app.post('/api/contact', async (req, res) => {
+    console.log('Received form submission:', req.body); // Debug log
+
     const { fullName, email, message } = req.body;
 
     // Validate input
@@ -74,9 +76,9 @@ app.post('/api/contact', async (req, res) => {
     try {
         // Save to PostgeSQL
         const insertQuery = `
-            INSERT INTO contact_submissions (full_name, email, message)
+            INSERT INTO contact_submissions (fullName, email, message)
             VALUES ($1, $2, $3)
-            RETURN id;
+            RETURNING id;
         `;
         const result = await pool.query(insertQuery, [fullName, email, message]);
 
@@ -105,7 +107,7 @@ app.post('/api/contact', async (req, res) => {
         });
     } catch (error) {
         console.error('Error processing form:', error);
-        res.status(500).json({ error: 'Failed tp process form submission' });
+        res.status(500).json({ error: 'Failed to process form submission' });
     }
   });
 
