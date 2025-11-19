@@ -90,16 +90,34 @@ document.addEventListener('DOMContentLoaded', function() {
       const submitBtn = contactForm.querySelector('button[type="submit"]');
       const statusMessage = document.getElementById('statusMessage');
   
+      // Get form field values using IDs (matching your HTML)
+      const fullName = document.getElementById('fullName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      // Validate inputs
+      if (!fullName || !email || !message) {
+        if (statusMessage) {
+          statusMessage.style.color = 'red';
+          statusMessage.textContent = 'Please fill in all fields.';
+        }
+        return;
+      }
+
       // Disable button and show loading
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending...';
-      if (statusMessage) statusMessage.textContent = '';
+      // submitBtn.textContent = 'Sending...';
+      if (statusMessage) {
+        statusMessage.textContent = 'Sending...';
+        statusMessage.style.color = '#00abf0';
+      } 
 
       const formData = {
-        fullName: contactForm.querySelector('input[placeholder="Full Name"]').value,
-        email: contactForm.querySelector('input[placeholder="Email"]').value,
-        message: contactForm.querySelector('input[placeholder="Your Massage"]').value
+        fullName: fullName,
+        email: email,
+        message: message
       };
+
       try {
         const response = await fetch('/api/contact', {
           method: 'POST',
@@ -111,12 +129,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const data = await response.json();
 
-        if (response.ok) {
+        if (response.ok && data.success) {
           if (statusMessage) {
             statusMessage.style.color = 'green';
             statusMessage.textContent = 'Thank you! Your message has been sent successfully.';
           }
-          contactForm.requestFullscreen();
+          contactForm.reset();  // Clear the form
         } else {
           throw new Error(data.error || 'Something went wrong');
         }
@@ -130,6 +148,8 @@ document.addEventListener('DOMContentLoaded', function() {
         submitBtn.textContent = 'Submit';
       }
     });
+  } else {
+    console.error('Contact form not found');
   }
 });
 //*************************CONTACT FORM ENDS ***************************** //
