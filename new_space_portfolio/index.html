@@ -1,0 +1,1004 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Joana Lawer | Aerospace & Space Exploration</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Space+Mono:wght@400;700&family=Exo+2:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --deep-space: #0a0e27;
+            --nebula-blue: #1e3a8a;
+            --cosmic-purple: #6b21a8;
+            --stellar-cyan: #06b6d4;
+            --solar-orange: #f97316;
+            --starlight: #e0f2fe;
+            --moon-gray: #cbd5e1;
+            --mars-red: #dc2626;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background: var(--deep-space);
+            color: var(--starlight);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated starfield background */
+        .starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes orbit {
+            from { transform: rotate(0deg) translateX(150px) rotate(0deg); }
+            to { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
+        }
+
+        /* Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 5%;
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(6, 182, 212, 0.3);
+        }
+
+        .logo_name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--stellar-cyan), var(--cosmic-purple), var(--solar-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .menu_list {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .menu_list a {
+            font-family: 'Space Mono', monospace;
+            color: var(--moon-gray);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .menu_list a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--stellar-cyan);
+            transition: width 0.3s ease;
+        }
+
+        .menu_list a:hover {
+            color: var(--stellar-cyan);
+        }
+
+        .menu_list a:hover::after {
+            width: 100%;
+        }
+
+        .menu_list a.active {
+            color: var(--stellar-cyan);
+        }
+
+        #menu-icon {
+            font-size: 2rem;
+            color: var(--stellar-cyan);
+            cursor: pointer;
+            display: none;
+        }
+
+        /* Hero Section */
+        .home {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .home-img {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin-bottom: 3rem;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .home-img img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--stellar-cyan);
+            box-shadow: 0 0 50px rgba(6, 182, 212, 0.6),
+                        0 0 100px rgba(107, 33, 168, 0.4);
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 50px rgba(6, 182, 212, 0.6),
+                            0 0 100px rgba(107, 33, 168, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 70px rgba(6, 182, 212, 0.8),
+                            0 0 130px rgba(107, 33, 168, 0.6);
+            }
+        }
+
+        .circle-spin {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 350px;
+            height: 350px;
+            border: 2px solid transparent;
+            border-top-color: var(--stellar-cyan);
+            border-right-color: var(--cosmic-purple);
+            border-radius: 50%;
+            animation: spin 8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .intro {
+            text-align: center;
+            max-width: 900px;
+            margin-bottom: 3rem;
+        }
+
+        .intro h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            background: linear-gradient(135deg, var(--stellar-cyan), var(--cosmic-purple), var(--solar-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 5s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .intro h2 {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.5rem;
+            color: var(--moon-gray);
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .btn-box {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            font-family: 'Space Mono', monospace;
+            padding: 1rem 3rem;
+            background: linear-gradient(135deg, var(--stellar-cyan), var(--cosmic-purple));
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.4);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.6);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.3), rgba(107, 33, 168, 0.3));
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(6, 182, 212, 0.4);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 800px;
+            position: relative;
+            animation: modalSlideIn 0.5s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 2.5rem;
+            color: var(--stellar-cyan);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close:hover {
+            color: var(--solar-orange);
+            transform: rotate(90deg);
+        }
+
+        .modal-content h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--stellar-cyan);
+        }
+
+        .modal-content h1 span {
+            color: var(--solar-orange);
+        }
+
+        .profile-statement p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: var(--moon-gray);
+        }
+
+        .profile-statement b {
+            color: var(--stellar-cyan);
+            font-family: 'Space Mono', monospace;
+        }
+
+        .social-profile {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-profile a {
+            font-size: 2rem;
+            color: var(--stellar-cyan);
+            transition: all 0.3s ease;
+        }
+
+        .social-profile a:hover {
+            color: var(--solar-orange);
+            transform: translateY(-5px);
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 5%;
+            position: relative;
+        }
+
+        .section-heading {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--stellar-cyan), var(--cosmic-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .section-subheading {
+            text-align: center;
+            color: var(--moon-gray);
+            font-size: 1.2rem;
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        hr {
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--stellar-cyan), var(--cosmic-purple));
+            border: none;
+            margin: 1rem auto 2rem;
+        }
+
+        /* Services/Expertise */
+        .services .row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.2), rgba(107, 33, 168, 0.2));
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(6, 182, 212, 0.3);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(107, 33, 168, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--stellar-cyan);
+            box-shadow: 0 20px 50px rgba(6, 182, 212, 0.4);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .services-icon {
+            font-size: 4rem;
+            color: var(--stellar-cyan);
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--starlight);
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card p {
+            color: var(--moon-gray);
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Portfolio */
+        .portfolio .row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background: rgba(30, 58, 138, 0.2);
+            border: 2px solid rgba(6, 182, 212, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            border-color: var(--stellar-cyan);
+            box-shadow: 0 20px 50px rgba(6, 182, 212, 0.5);
+        }
+
+        .card-img-top {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .portfolio .service-card h4 {
+            margin-top: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        /* Blog */
+        .blog .row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        /* Contact */
+        .contact-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .contact-details {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.1rem;
+            line-height: 2.5;
+            color: var(--moon-gray);
+        }
+
+        .contact-details i {
+            color: var(--stellar-cyan);
+            margin-right: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .form-input {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-field input,
+        .textarea-field textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(30, 58, 138, 0.2);
+            border: 2px solid rgba(6, 182, 212, 0.3);
+            border-radius: 10px;
+            color: var(--starlight);
+            font-family: 'Exo 2', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .input-field input:focus,
+        .textarea-field textarea:focus {
+            outline: none;
+            border-color: var(--stellar-cyan);
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+        }
+
+        .textarea-field textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 2rem 5%;
+            background: rgba(10, 14, 39, 0.8);
+            border-top: 1px solid rgba(6, 182, 212, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-text p {
+            font-family: 'Space Mono', monospace;
+            color: var(--moon-gray);
+            font-size: 0.9rem;
+        }
+
+        .footer-icon a {
+            font-size: 2rem;
+            color: var(--stellar-cyan);
+            transition: all 0.3s ease;
+        }
+
+        .footer-icon a:hover {
+            color: var(--solar-orange);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .menu_list {
+                display: none;
+            }
+
+            #menu-icon {
+                display: block;
+            }
+
+            .intro h1 {
+                font-size: 2.5rem;
+            }
+
+            .contact-section {
+                grid-template-columns: 1fr;
+            }
+
+            .portfolio .row,
+            .services .row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .intro h1 {
+                font-size: 2rem;
+            }
+
+            .intro h2 {
+                font-size: 1.2rem;
+            }
+
+            .form-input {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Starfield Background -->
+    <div class="starfield" id="starfield"></div>
+
+    <!-- Navigation -->
+    <header class="header">
+        <a href="#" class="logo_name" style="text-decoration: none;">Joana Lawer</a>
+        <div class='bx bx-menu' id="menu-icon"></div>
+        <nav class="menu_list">
+            <a href="#home" class="active">Home</a>
+            <a href="#services">Expertise</a>
+            <a href="#portfolio">Missions</a>
+            <a href="#blog">Research</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="home" id="home">
+        <div class="home-img">
+            <img src="/static/images/lawer.jpg" alt="Joana Lawer">
+            <span class="circle-spin"></span>
+        </div>
+        <div class="intro">
+            <h1>REACHING FOR THE STARS</h1>
+            <h2>Space Explorer</h2>
+        </div>
+        <div class="btn-box">
+            <a href="#" class="btn" id="btn">Mission Profile</a>
+        </div>
+    </section>
+
+    <!-- Profile Modal -->
+    <div class="modal" id="profile-modal">
+        <div class="container">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h1>Hi, I'm <span>Joana</span></h1>
+                <div class="profile-statement">
+                    <p>
+                        I'm a space science enthusiast driven by humanity's quest to explore the cosmos. 
+                        My passion lies in pushing the boundaries of human spaceflight, rocket propulsion systems, and the 
+                        technologies that will enable our species to become multi-planetary.
+                    </p>
+                    <p>
+                        From orbital mechanics to spacecraft design, I'm fascinated by every aspect of space exploration. 
+                        I believe the future of humanity lies among the stars, and I'm dedicated to being part of the generation 
+                        that makes interplanetary travel a reality.
+                    </p>
+                    <p>
+                        <!-- <b>Specializations:</b> Aerospace Engineering, Orbital Mechanics, Propulsion Systems
+                        <br> -->
+                        <b>Fields of Study:</b> Astrophysics, Spacecraft Design, Mission Planning, Astrodynamics
+                        <br>
+                        <!-- <b>Interests:</b> Deep Space Exploration, Astrophotography, Rocket Science, Exoplanets -->
+                    </p>
+                </div>
+                <div class="btn-box">
+                    <a href="#contact" class="btn">Initiate Contact</a>
+                </div>
+                <div class="social-profile">
+                    <a href="https://github.com/joanalawer"><i class='bx bxl-github'></i></a>
+                    <a href="https://linkedin.com/in/joanalawer"><i class='bx bxl-linkedin'></i></a>
+                    <a href="https://x.com/joana_lawer"><i class='bx bxl-twitter'></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Expertise Section -->
+    <section class="services" id="services">
+        <p class="section-heading">Expertise</p>
+        <hr>
+        <h3 class="section-subheading">Core competencies in aerospace engineering and space exploration</h3>
+
+        <div class="row">
+            <div class="service-card">
+                <div class="services-icon">
+                    <i class='bx bx-radar'></i>
+                </div>
+                <h4>Mission Planning</h4>
+                <p>Trajectory optimization, launch window calculations, mission architecture design, and resource management for space missions.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="services-icon">
+                    <i class='bx bx-rocket'></i>
+                </div>
+                <h4>Aerospace Engineering</h4>
+                <p>Spacecraft design, propulsion systems, orbital mechanics, and structural analysis for both atmospheric and space flight vehicles.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="services-icon">
+                    <i class='bx bx-planet'></i>
+                </div>
+                <h4>Space Science</h4>
+                <p>Astrophysics research, planetary science, cosmic phenomena analysis, and deep space observation and exploration methodologies.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio/Missions Section -->
+    <section class="portfolio" id="portfolio">
+        <p class="section-heading">Missions & Projects</p>
+        <hr>
+        <h3 class="section-subheading">Key projects in aerospace engineering and space exploration</h3>
+
+        <div class="row">
+            <div class="service-card">
+                <div class="card">
+                    <img class="card-img-top" src="/static/images/Artemis2-FlightPath.jpeg" alt="Lunar Flyby">
+                </div>
+                <h4>Artemis II - Orion 3D Trajectory</h4>
+                <p>Orions full lunar flyby trajectory arc in 3D using NASA Artemis2 OEM data.</p>
+                <div class="btn-box btns">
+                    <a href="artemis2-3d-trajectory.html" class="btn">Explore Mission</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="card">
+                    <img class="card-img-top" src="/static/images/peribank.png" alt="Mars Mission">
+                </div>
+                <h4>Mars Transfer Trajectory</h4>
+                <p>Optimized Hohmann transfer orbit calculations for efficient Mars mission planning with minimal fuel consumption.</p>
+                <div class="btn-box btns">
+                    <a href="pending.html" class="btn">Explore Mission</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="card">
+                    <img class="card-img-top" src="/static/images/text.jpg" alt="Propulsion System">
+                </div>
+                <h4>Propulsion System Design</h4>
+                <p>Advanced rocket engine design focusing on thrust optimization and fuel efficiency for next-generation spacecraft.</p>
+                <div class="btn-box btns">
+                    <a href="pending.html" class="btn">Explore Mission</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research/Blog Section -->
+    <section class="blog" id="blog">
+        <p class="section-heading">Research & Publications</p>
+        <hr>
+        <h3 class="section-subheading">Contributions to aerospace engineering and space science literature</h3>
+
+        <div class="row">
+            <div class="service-card">
+                <h4>Orbital Mechanics</h4>
+                <p>Orbital Trajectory Simulation using fourth order Runge-Kutta(RK4) Method</p>
+                <div class="btn-box btns">
+                    <embed src="/static/papers/AIMS_Project.pdf" target="_blank" class="btn">Read Paper>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <h4>Orbital Mechanics</h4>
+                <p>Deep dive into Kepler's laws and their practical applications in modern spacecraft trajectory planning and satellite deployment.</p>
+                <div class="btn-box btns">
+                    <a href="https://medium.com/@joanalawer001" target="_blank" class="btn">Read Paper</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <h4>Interplanetary Travel</h4>
+                <p>Analysis of propulsion technologies enabling human missions to Mars and beyond, including ion drives and nuclear thermal rockets.</p>
+                <div class="btn-box btns">
+                    <a href="https://medium.com/@joanalawer001" target="_blank" class="btn">Read Paper</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <h4>Exoplanet Discovery</h4>
+                <p>Research on detection methods for potentially habitable exoplanets using transit photometry and radial velocity measurements.</p>
+                <div class="btn-box btns">
+                    <a href="https://medium.com/@joanalawer001" target="_blank" class="btn">Read Paper</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <p class="section-heading">Initiate Contact</p>
+        <hr>
+        <h3 class="section-subheading">Let's collaborate on pushing the boundaries of space exploration</h3>
+
+        <div class="contact-section">
+            <div>
+                <div class="contact-details">
+                    <div><i class='bx bx-envelope'></i>joanalawer.site@gmail.com</div>
+                    <div><i class='bx bx-globe'></i>joanalawer.github.io</div>
+                </div>
+                <div class="social-profile">
+                    <a href="https://github.com/joanalawer"><i class='bx bxl-github'></i></a>
+                    <a href="https://linkedin.com/in/joanalawer"><i class='bx bxl-linkedin'></i></a>
+                    <a href="https://x.com/joana_lawer"><i class='bx bxl-twitter'></i></a>
+                </div>
+            </div>
+
+            <div>
+                <form id="contactForm">
+                    <div class="form-input">
+                        <div class="input-field">
+                            <input type="text" id="fullName" placeholder="Full Name" required>
+                        </div>
+                        <div class="input-field">
+                            <input type="email" id="email" placeholder="Email Address" required>
+                        </div>
+                    </div>
+                    <div class="textarea-field">
+                        <textarea id="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
+                    </div>
+                    <div class="btn-box btns">
+                        <button class="btn" type="submit">Transmit Message</button>
+                    </div>
+                    <div id="statusMessage" style="margin-top: 10px; font-size: 1rem;"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-text">
+            <p>Copyright &copy; 2025 Joana Lawer | Aerospace Engineer | Space Explorer</p>
+        </div>
+        <div class="footer-icon">
+            <a href="#home"><i class='bx bx-chevrons-up'></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Generate starfield
+        function createStarfield() {
+            const starfield = document.getElementById('starfield');
+            const numberOfStars = 200;
+
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.opacity = Math.random();
+                starfield.appendChild(star);
+            }
+        }
+
+        createStarfield();
+
+        // Modal functionality
+        const modal = document.getElementById('profile-modal');
+        const btn = document.getElementById('btn');
+        const closeBtn = document.querySelector('.close');
+
+        btn.onclick = function(e) {
+            e.preventDefault();
+            modal.classList.add('active');
+        }
+
+        closeBtn.onclick = function() {
+            modal.classList.remove('active');
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.classList.remove('active');
+            }
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    modal.classList.remove('active');
+                }
+            });
+        });
+
+        // Active nav on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.menu_list a');
+
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const formData = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value
+            };
+
+            const statusMessage = document.getElementById('statusMessage');
+
+            try {
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    statusMessage.style.color = '#06b6d4';
+                    statusMessage.textContent = '✓ Message transmitted successfully!';
+                    document.getElementById('contactForm').reset();
+                } else {
+                    statusMessage.style.color = '#dc2626';
+                    statusMessage.textContent = '✗ Transmission failed. Please try again.';
+                }
+            } catch (error) {
+                statusMessage.style.color = '#dc2626';
+                statusMessage.textContent = '✗ Connection error. Please check your network.';
+            }
+        });
+
+        // Mobile menu toggle
+        const menuIcon = document.getElementById('menu-icon');
+        const menuList = document.querySelector('.menu_list');
+
+        menuIcon.addEventListener('click', () => {
+            menuList.style.display = menuList.style.display === 'flex' ? 'none' : 'flex';
+        });
+    </script>
+</body>
+</html>
